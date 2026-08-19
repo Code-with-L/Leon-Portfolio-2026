@@ -17,18 +17,20 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="py-24 sm:py-32">
+      <section className="py-24 sm:py-32 lg:py-40">
         <Container>
           <div className="flex max-w-2xl flex-col gap-6">
-            <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+            <p className="text-sm font-medium tracking-wide text-muted uppercase">
+              Software Developer
+            </p>
+            <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Leon Muriithi
             </h1>
-            <p className="text-lg text-muted">Software Developer</p>
-            <p className="max-w-lg text-base leading-relaxed text-muted">
+            <p className="max-w-lg text-base leading-relaxed text-muted sm:text-lg">
               I build practical software, explore new technologies, and learn by
               solving real problems. This portfolio is a collection of that work.
             </p>
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3 pt-3">
               <Link href="/projects">
                 <Button>View Projects</Button>
               </Link>
@@ -41,16 +43,16 @@ export default function Home() {
       </section>
 
       {/* Selected Projects */}
-      <section className="border-t border-border py-20">
+      <section className="border-t border-border py-20 sm:py-24">
         <Container>
           <div className="flex items-end justify-between">
             <SectionHeading
-              title="Selected Projects"
-              description="A selection of projects I've built or am currently working on."
+              title="Selected Work"
+              description="Projects I've built or am currently working on."
             />
             <Link
               href="/projects"
-              className="hidden text-sm font-medium transition-colors hover:text-muted sm:block"
+              className="mb-10 hidden text-sm font-medium text-muted transition-colors duration-150 hover:text-foreground sm:block"
             >
               View All &rarr;
             </Link>
@@ -58,7 +60,7 @@ export default function Home() {
           <ProjectGrid projects={featuredProjects} />
           <Link
             href="/projects"
-            className="mt-8 block text-center text-sm font-medium transition-colors hover:text-muted sm:hidden"
+            className="mt-8 block text-center text-sm font-medium text-muted transition-colors duration-150 hover:text-foreground sm:hidden"
           >
             View All Projects &rarr;
           </Link>
@@ -66,13 +68,13 @@ export default function Home() {
       </section>
 
       {/* Skills */}
-      <section className="border-t border-border py-20">
+      <section className="border-t border-border py-20 sm:py-24">
         <Container>
           <SectionHeading
             title="What I Work With"
             description="Technologies and tools I use to build software."
           />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="max-w-3xl">
             {categories.map((category) => (
               <SkillGroup
                 key={category}
@@ -85,7 +87,7 @@ export default function Home() {
       </section>
 
       {/* Certificates */}
-      <section className="border-t border-border py-20">
+      <section className="border-t border-border py-20 sm:py-24">
         <Container>
           <SectionHeading
             title="Certificates & Learning"
@@ -96,33 +98,36 @@ export default function Home() {
       </section>
 
       {/* About Preview */}
-      <section className="border-t border-border py-20">
+      <section className="border-t border-border py-20 sm:py-24">
         <Container>
           <div className="flex max-w-2xl flex-col gap-6">
-            <SectionHeading title="About" />
+            <SectionHeading
+              title="About"
+              description="A developer focused on building real software and learning through practical projects."
+            />
             <p className="text-base leading-relaxed text-muted">
-              I&apos;m a software developer focused on building practical tools
-              and learning through real projects. I care about writing code that
-              works, solving problems that matter, and continuously improving my
-              craft.
+              Every project is an opportunity to deepen my understanding of
+              software development — from architecture and code quality to
+              user experience and performance.
             </p>
             <Link
               href="/about"
-              className="text-sm font-medium transition-colors hover:text-muted"
+              className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors duration-150 hover:text-muted"
             >
-              Learn More &rarr;
+              Learn More
+              <span aria-hidden="true">&rarr;</span>
             </Link>
           </div>
         </Container>
       </section>
 
       {/* Contact CTA */}
-      <section className="border-t border-border py-20">
+      <section className="border-t border-border py-20 sm:py-24">
         <Container>
           <div className="flex max-w-2xl flex-col gap-6">
             <SectionHeading
               title="Get in Touch"
-              description="Have a question, idea, or want to collaborate? I'd like to hear from you."
+              description="Have a question, idea, or want to collaborate?"
             />
             <Link href="/contact">
               <Button>Contact Me</Button>

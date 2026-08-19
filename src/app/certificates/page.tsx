@@ -17,7 +17,7 @@ export default function CertificatesPage() {
     <Container as="main" className="py-20 sm:py-28">
       <SectionHeading
         title="Certificates & Badges"
-        description="Credentials and learning milestones from courses, codelabs, and platforms."
+        description="Credentials and learning milestones from courses, codelabs, and developer programs."
       />
       <CertificateGrid certificates={certificates} />
     </Container>

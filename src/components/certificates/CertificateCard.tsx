@@ -13,21 +13,26 @@ const typeLabels: Record<Certificate["type"], string> = {
 
 export function CertificateCard({ certificate }: CertificateCardProps) {
   return (
-    <article className="flex flex-col gap-4 rounded-lg border border-border p-6 transition-colors hover:border-foreground/20">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wider text-muted">
+    <article className="flex flex-col gap-4 border border-border p-6">
+      <div className="flex items-center gap-3 text-xs text-muted">
+        <span className="font-medium uppercase tracking-wider">
           {typeLabels[certificate.type]}
         </span>
         {certificate.date && (
-          <time className="text-xs text-muted">{certificate.date}</time>
+          <>
+            <span aria-hidden="true">&middot;</span>
+            <time>{certificate.date}</time>
+          </>
         )}
       </div>
+
       <div>
-        <h3 className="text-lg font-semibold tracking-tight">
+        <h3 className="text-base font-semibold tracking-tight text-foreground">
           {certificate.title}
         </h3>
         <p className="mt-1 text-sm text-muted">{certificate.issuer}</p>
       </div>
+
       {certificate.skills.length > 0 && (
         <div className="flex flex-wrap gap-1.5">
           {certificate.skills.map((skill) => (
@@ -35,15 +40,17 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
           ))}
         </div>
       )}
+
       {certificate.credentialUrl && (
-        <div className="mt-auto pt-2">
+        <div className="mt-auto border-t border-border pt-3">
           <a
             href={certificate.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium transition-colors hover:text-muted"
+            className="inline-flex items-center gap-1 text-sm font-medium transition-colors duration-150 hover:text-muted"
           >
-            View Credential &rarr;
+            View Credential
+            <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       )}

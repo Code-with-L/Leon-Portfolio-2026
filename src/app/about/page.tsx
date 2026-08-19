@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 export const metadata: Metadata = {
   title: "About — Leon Muriithi",
   description:
-    "Learn about Leon Muriithi's development philosophy, current focus, and the technologies he works with.",
+    "Leon Muriithi's development philosophy, current focus, and the technologies he works with.",
 };
 
 export default function AboutPage() {
@@ -18,7 +18,7 @@ export default function AboutPage() {
       />
 
       <div className="flex max-w-2xl flex-col gap-12">
-        {/* Introduction */}
+        {/* Who I Am */}
         <section className="flex flex-col gap-4">
           <p className="text-base leading-relaxed text-muted">
             I&apos;m Leon Muriithi, a software developer with a passion for
@@ -34,7 +34,9 @@ export default function AboutPage() {
 
         {/* Current Focus */}
         <section className="flex flex-col gap-4">
-          <h2 className="text-lg font-semibold tracking-tight">Current Focus</h2>
+          <h2 className="text-lg font-semibold tracking-tight text-foreground">
+            Current Focus
+          </h2>
           <p className="text-base leading-relaxed text-muted">
             I&apos;m currently exploring modern web development with React and
             Next.js, mobile development with Flutter, and backend systems with
@@ -57,49 +59,59 @@ export default function AboutPage() {
 
         {/* Development Philosophy */}
         <section className="flex flex-col gap-4">
-          <h2 className="text-lg font-semibold tracking-tight">
+          <h2 className="text-lg font-semibold tracking-tight text-foreground">
             Development Philosophy
           </h2>
-          <ul className="flex flex-col gap-3 text-base leading-relaxed text-muted">
-            <li>
-              <strong className="font-medium text-foreground">
+          <ul className="flex flex-col gap-4" role="list">
+            <li className="flex flex-col gap-1">
+              <span className="text-sm font-semibold text-foreground">
                 Build real things.
-              </strong>{" "}
-              Projects should solve actual problems, not just demonstrate
-              features.
+              </span>
+              <span className="text-sm leading-relaxed text-muted">
+                Projects should solve actual problems, not just demonstrate
+                features.
+              </span>
             </li>
-            <li>
-              <strong className="font-medium text-foreground">
+            <li className="flex flex-col gap-1">
+              <span className="text-sm font-semibold text-foreground">
                 Learn through doing.
-              </strong>{" "}
-              The best understanding comes from implementation, not just reading
-              documentation.
+              </span>
+              <span className="text-sm leading-relaxed text-muted">
+                The best understanding comes from implementation, not just
+                reading documentation.
+              </span>
             </li>
-            <li>
-              <strong className="font-medium text-foreground">
+            <li className="flex flex-col gap-1">
+              <span className="text-sm font-semibold text-foreground">
                 Write code that works.
-              </strong>{" "}
-              Reliability and clarity matter more than cleverness.
+              </span>
+              <span className="text-sm leading-relaxed text-muted">
+                Reliability and clarity matter more than cleverness.
+              </span>
             </li>
-            <li>
-              <strong className="font-medium text-foreground">
+            <li className="flex flex-col gap-1">
+              <span className="text-sm font-semibold text-foreground">
                 Think about security.
-              </strong>{" "}
-              Good software considers threats from the beginning, not as an
-              afterthought.
+              </span>
+              <span className="text-sm leading-relaxed text-muted">
+                Good software considers threats from the beginning, not as an
+                afterthought.
+              </span>
             </li>
-            <li>
-              <strong className="font-medium text-foreground">
+            <li className="flex flex-col gap-1">
+              <span className="text-sm font-semibold text-foreground">
                 Improve continuously.
-              </strong>{" "}
-              Every project is a chance to do better than the last one.
+              </span>
+              <span className="text-sm leading-relaxed text-muted">
+                Every project is a chance to do better than the last one.
+              </span>
             </li>
           </ul>
         </section>
 
         {/* Technologies */}
         <section className="flex flex-col gap-4">
-          <h2 className="text-lg font-semibold tracking-tight">
+          <h2 className="text-lg font-semibold tracking-tight text-foreground">
             Technologies I Work With
           </h2>
           <div className="flex flex-wrap gap-2">

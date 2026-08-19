@@ -39,32 +39,36 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <Container as="main" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl">
+      <article className="mx-auto max-w-3xl">
         <Link
           href="/projects"
-          className="mb-8 inline-block text-sm text-muted transition-colors hover:text-foreground"
+          className="mb-10 inline-flex items-center gap-1 text-sm text-muted transition-colors duration-150 hover:text-foreground"
         >
-          &larr; All Projects
+          <span aria-hidden="true">&larr;</span>
+          All Projects
         </Link>
 
-        <header className="mb-10">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <header className="mb-10 flex flex-col gap-4">
+          <p className="text-xs font-medium uppercase tracking-wider text-muted">
+            {project.category}
+          </p>
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {project.title}
           </h1>
-          <p className="mt-4 text-lg text-muted">
+          <p className="text-base leading-relaxed text-muted sm:text-lg">
             {project.shortDescription}
           </p>
         </header>
 
-        <div className="mb-12">
+        <div className="mb-12 border-y border-border py-6">
           <ProjectMeta project={project} />
         </div>
 
         {project.sections && project.sections.length > 0 && (
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-12">
             {project.sections.map((section) => (
               <section key={section.title} className="flex flex-col gap-3">
-                <h2 className="text-lg font-semibold tracking-tight">
+                <h2 className="text-lg font-semibold tracking-tight text-foreground">
                   {section.title}
                 </h2>
                 <p className="text-base leading-relaxed text-muted">
@@ -74,7 +78,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </div>
         )}
-      </div>
+      </article>
     </Container>
   );
 }

@@ -9,11 +9,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent text-accent-foreground hover:bg-accent/90",
+    "bg-accent text-accent-foreground hover:bg-accent/85 active:bg-accent/75",
   secondary:
-    "border border-border text-foreground hover:bg-foreground/5",
+    "border border-border text-foreground hover:bg-foreground/[0.04] active:bg-foreground/[0.08]",
   ghost:
-    "text-foreground hover:bg-foreground/5",
+    "text-foreground hover:bg-foreground/[0.04] active:bg-foreground/[0.08]",
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -22,7 +22,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground disabled:pointer-events-none disabled:opacity-40",
           variantStyles[variant],
           className,
         )}

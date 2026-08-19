@@ -1,5 +1,4 @@
 import type { Skill, SkillCategory } from "@/types";
-import { Badge } from "@/components/ui/Badge";
 
 interface SkillGroupProps {
   category: SkillCategory;
@@ -16,15 +15,17 @@ const categoryLabels: Record<SkillCategory, string> = {
 
 export function SkillGroup({ category, skills }: SkillGroupProps) {
   return (
-    <div className="flex flex-col gap-3">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted">
+    <div className="border-t border-border pt-6">
+      <h3 className="text-xs font-semibold uppercase tracking-wider text-muted">
         {categoryLabels[category]}
       </h3>
-      <div className="flex flex-wrap gap-2">
+      <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2" role="list">
         {skills.map((skill) => (
-          <Badge key={skill.name}>{skill.name}</Badge>
+          <li key={skill.name} className="text-sm text-foreground">
+            {skill.name}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

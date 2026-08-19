@@ -6,23 +6,22 @@ export function Footer() {
   return (
     <footer className="border-t border-border">
       <Container>
-        <div className="flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-8 py-10 sm:flex-row sm:justify-between">
+          <div className="flex flex-col gap-1.5">
             <p className="text-sm font-semibold">{siteConfig.name}</p>
             <p className="max-w-xs text-xs leading-relaxed text-muted">
-              Software developer building practical tools and learning through
-              real projects.
+              Building practical software and learning through real projects.
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:gap-8">
+          <div className="flex gap-10">
             <nav aria-label="Footer navigation">
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-1.5" role="list">
                 {siteConfig.nav.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-xs text-muted transition-colors hover:text-foreground"
+                      className="text-xs text-muted transition-colors duration-150 hover:text-foreground"
                     >
                       {item.label}
                     </Link>
@@ -31,13 +30,13 @@ export function Footer() {
               </ul>
             </nav>
 
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-1.5" role="list">
               <li>
                 <a
                   href={siteConfig.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-muted transition-colors hover:text-foreground"
+                  className="text-xs text-muted transition-colors duration-150 hover:text-foreground"
                 >
                   GitHub
                 </a>
@@ -45,7 +44,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.links.email}`}
-                  className="text-xs text-muted transition-colors hover:text-foreground"
+                  className="text-xs text-muted transition-colors duration-150 hover:text-foreground"
                 >
                   Email
                 </a>
@@ -56,8 +55,7 @@ export function Footer() {
 
         <div className="border-t border-border py-4">
           <p className="text-center text-xs text-muted">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.name}
           </p>
         </div>
       </Container>

@@ -21,11 +21,13 @@ export function SectionHeading({
         className,
       )}
     >
-      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+      <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-3 text-muted">{description}</p>
+        <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-muted">
+          {description}
+        </p>
       )}
     </div>
   );

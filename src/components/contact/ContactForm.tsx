@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 
-type FormStatus = "idle" | "loading" | "success" | "error";
+type FormStatus = "idle" | "loading" | "success";
 
 interface FormData {
   name: string;
@@ -83,11 +83,11 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-lg border border-border p-8 text-center">
-        <p className="text-lg font-semibold">Message recorded.</p>
+      <div className="border border-border p-8 text-center sm:p-10">
+        <p className="text-base font-semibold">Message recorded.</p>
         <p className="mt-2 text-sm text-muted">
-          Contact functionality will be connected in the backend phase. Thank
-          you for your message.
+          The contact form is currently in preview mode. Backend integration
+          will be connected in a future phase.
         </p>
         <Button
           variant="secondary"
@@ -102,7 +102,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <label htmlFor="name" className="text-sm font-medium">
           Name
         </label>
@@ -112,7 +112,8 @@ export function ContactForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors focus:border-foreground/40"
+          placeholder="Your name"
+          className="rounded border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors duration-150 placeholder:text-muted/50 focus:border-foreground/30"
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "name-error" : undefined}
         />
@@ -123,7 +124,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <label htmlFor="email" className="text-sm font-medium">
           Email
         </label>
@@ -133,7 +134,8 @@ export function ContactForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors focus:border-foreground/40"
+          placeholder="you@example.com"
+          className="rounded border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors duration-150 placeholder:text-muted/50 focus:border-foreground/30"
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
         />
@@ -144,7 +146,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <label htmlFor="subject" className="text-sm font-medium">
           Subject
         </label>
@@ -154,7 +156,8 @@ export function ContactForm() {
           name="subject"
           value={formData.subject}
           onChange={handleChange}
-          className="rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors focus:border-foreground/40"
+          placeholder="What is this about?"
+          className="rounded border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors duration-150 placeholder:text-muted/50 focus:border-foreground/30"
           aria-invalid={!!errors.subject}
           aria-describedby={errors.subject ? "subject-error" : undefined}
         />
@@ -165,7 +168,7 @@ export function ContactForm() {
         )}
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <label htmlFor="message" className="text-sm font-medium">
           Message
         </label>
@@ -175,7 +178,8 @@ export function ContactForm() {
           rows={5}
           value={formData.message}
           onChange={handleChange}
-          className="resize-none rounded-md border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors focus:border-foreground/40"
+          placeholder="Your message..."
+          className="resize-none rounded border border-border bg-transparent px-3 py-2 text-sm outline-none transition-colors duration-150 placeholder:text-muted/50 focus:border-foreground/30"
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
         />
@@ -186,14 +190,14 @@ export function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" disabled={status === "loading"} className="mt-2">
-        {status === "loading" ? "Sending..." : "Send Message"}
-      </Button>
-
-      <p className="text-xs text-muted">
-        No backend connected yet. Messages are stored locally during
-        development.
-      </p>
+      <div className="flex flex-col gap-3">
+        <Button type="submit" disabled={status === "loading"}>
+          {status === "loading" ? "Sending..." : "Send Message"}
+        </Button>
+        <p className="text-xs text-muted">
+          Backend integration is pending. Messages are not currently sent.
+        </p>
+      </div>
     </form>
   );
 }

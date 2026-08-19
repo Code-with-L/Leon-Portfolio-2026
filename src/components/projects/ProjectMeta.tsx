@@ -6,12 +6,6 @@ interface ProjectMetaProps {
 }
 
 export function ProjectMeta({ project }: ProjectMetaProps) {
-  const metaItems = [
-    project.year && { label: "Year", value: String(project.year) },
-    { label: "Status", value: project.status === "completed" ? "Completed" : "In Progress" },
-    { label: "Category", value: project.category },
-  ].filter(Boolean);
-
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap gap-1.5">
@@ -19,39 +13,52 @@ export function ProjectMeta({ project }: ProjectMetaProps) {
           <Badge key={tech}>{tech}</Badge>
         ))}
       </div>
-      <dl className="flex flex-col gap-3 text-sm">
-        {metaItems.map(
-          (item) =>
-            item && (
-              <div key={item.label} className="flex gap-3">
-                <dt className="w-20 shrink-0 text-muted">{item.label}</dt>
-                <dd className="font-medium">{item.value}</dd>
-              </div>
-            ),
+
+      <dl className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm sm:grid-cols-3">
+        {project.year && (
+          <div className="flex flex-col gap-0.5">
+            <dt className="text-xs uppercase tracking-wider text-muted">Year</dt>
+            <dd className="font-medium">{project.year}</dd>
+          </div>
         )}
+        <div className="flex flex-col gap-0.5">
+          <dt className="text-xs uppercase tracking-wider text-muted">Status</dt>
+          <dd className="font-medium">
+            {project.status === "completed" ? "Completed" : "In Progress"}
+          </dd>
+        </div>
+        <div className="flex flex-col gap-0.5">
+          <dt className="text-xs uppercase tracking-wider text-muted">Category</dt>
+          <dd className="font-medium">{project.category}</dd>
+        </div>
       </dl>
-      <div className="flex gap-3">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium transition-colors hover:text-muted"
-          >
-            GitHub &rarr;
-          </a>
-        )}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium transition-colors hover:text-muted"
-          >
-            Live Site &rarr;
-          </a>
-        )}
-      </div>
+
+      {(project.githubUrl || project.liveUrl) && (
+        <div className="flex gap-4">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium transition-colors duration-150 hover:text-muted"
+            >
+              GitHub
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium transition-colors duration-150 hover:text-muted"
+            >
+              Live Site
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          )}
+        </div>
+      )}
     </div>
   );
 }

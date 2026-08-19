@@ -19,7 +19,7 @@ export default function SkillsPage() {
         title="Skills"
         description="Technologies and tools I use to build software."
       />
-      <div className="flex flex-col gap-10">
+      <div className="max-w-3xl">
         {categories.map((category) => (
           <SkillGroup
             key={category}
