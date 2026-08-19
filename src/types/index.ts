@@ -14,3 +14,50 @@ export interface SiteConfig {
   };
   nav: readonly NavItem[];
 }
+
+export interface ProjectSection {
+  title: string;
+  content: string;
+}
+
+export interface Project {
+  slug: string;
+  title: string;
+  shortDescription: string;
+  description: string;
+  category: string;
+  technologies: string[];
+  featured: boolean;
+  status: "completed" | "in-progress" | "planned";
+  githubUrl?: string;
+  liveUrl?: string;
+  image?: string;
+  year?: number;
+  sections?: ProjectSection[];
+}
+
+export type CertificateType = "certificate" | "badge" | "codelab";
+
+export interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  type: CertificateType;
+  date?: string;
+  skills: string[];
+  credentialUrl?: string;
+  image?: string;
+}
+
+export type SkillCategory =
+  | "language"
+  | "framework"
+  | "backend"
+  | "database"
+  | "tools";
+
+export interface Skill {
+  name: string;
+  category: SkillCategory;
+  description?: string;
+}

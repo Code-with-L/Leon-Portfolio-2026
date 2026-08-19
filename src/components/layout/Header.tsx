@@ -1,12 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import { Container } from "@/components/ui/Container";
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-sm">
@@ -28,7 +35,12 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-muted transition-colors hover:text-foreground"
+                  className={`text-sm transition-colors hover:text-foreground ${
+                    isActive(item.href)
+                      ? "font-medium text-foreground"
+                      : "text-muted"
+                  }`}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {item.label}
                 </Link>
@@ -75,7 +87,12 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm text-muted transition-colors hover:text-foreground"
+                  className={`text-sm transition-colors hover:text-foreground ${
+                    isActive(item.href)
+                      ? "font-medium text-foreground"
+                      : "text-muted"
+                  }`}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
