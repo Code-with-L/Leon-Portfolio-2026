@@ -1,8 +1,18 @@
 import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import { getFirestore, type Firestore } from "firebase/firestore";
+import {
+  getFirestore,
+  type Firestore,
+} from "firebase/firestore";
+import {
+  getAuth,
+  type Auth,
+  browserLocalPersistence,
+  setPersistence,
+} from "firebase/auth";
 
 let app: FirebaseApp;
 let db: Firestore;
+let auth: Auth;
 
 function getApp(): FirebaseApp {
   if (getApps().length > 0) {
@@ -28,4 +38,13 @@ export function getDb(): Firestore {
   app = getApp();
   db = getFirestore(app);
   return db;
+}
+
+export function getAuthInstance(): Auth {
+  if (auth) return auth;
+
+  app = getApp();
+  auth = getAuth(app);
+  setPersistence(auth, browserLocalPersistence);
+  return auth;
 }

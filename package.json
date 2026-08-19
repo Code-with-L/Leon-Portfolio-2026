@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "migrate": "tsx scripts/migrate-to-firestore.ts"
+    "migrate": "tsx scripts/migrate-to-firestore.ts",
+    "set-admin": "tsx scripts/set-admin-claim.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "firebase": "^12.17.1",
+    "firebase-admin": "^14.2.0",
     "next": "16.3.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"
