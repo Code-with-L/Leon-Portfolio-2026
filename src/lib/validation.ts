@@ -16,6 +16,18 @@ const MAX_DESCRIPTION = 5000;
 const MAX_SHORT_DESCRIPTION = 500;
 const MAX_CATEGORY = 100;
 const MAX_TEXT = 1000;
+const MAX_ALT = 300;
+
+export const ALLOWED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/avif",
+] as const;
+
+export const ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif"] as const;
+
+export const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5 MB
 
 export interface ValidationError {
   field: string;
@@ -24,6 +36,49 @@ export interface ValidationError {
 
 function tooLong(value: string, max: number): boolean {
   return value.length > max;
+}
+
+export function validateImageFile(file: File): ValidationError[] {
+  const errors: ValidationError[] = [];
+
+  if (file.size > MAX_IMAGE_SIZE) {
+    const maxMB = Math.round(MAX_IMAGE_SIZE / (1024 * 1024));
+    errors.push({ field: "image", message: `Image must be ${maxMB} MB or smaller.` });
+  }
+
+  const ext = "." + file.name.split(".").pop()?.toLowerCase();
+  if (!(ALLOWED_IMAGE_EXTENSIONS as readonly string[]).includes(ext)) {
+    errors.push({ field: "image", message: "Image must be JPEG, PNG, WebP, or AVIF." });
+  }
+
+  return errors;
+}
+
+export function validateImageMetadata(data: Record<string, unknown>): ValidationError[] {
+  const errors: ValidationError[] = [];
+
+  if (data.image !== undefined && data.image !== null) {
+    if (typeof data.image === "object" && data.image !== null) {
+      const img = data.image as Record<string, unknown>;
+      if (!img.url || typeof img.url !== "string") {
+        errors.push({ field: "image", message: "Image URL is required." });
+      }
+      if (!img.publicId || typeof img.publicId !== "string") {
+        errors.push({ field: "image", message: "Image public ID is required." });
+      }
+      if (!img.alt || typeof img.alt !== "string" || !img.alt.trim()) {
+        errors.push({ field: "image", message: "Image alt text is required." });
+      } else if (tooLong(img.alt.trim(), MAX_ALT)) {
+        errors.push({ field: "image", message: `Alt text must be ${MAX_ALT} characters or fewer.` });
+      }
+    } else if (typeof data.image === "string") {
+      // Accept string for backward compatibility during migration
+    } else {
+      errors.push({ field: "image", message: "Invalid image data." });
+    }
+  }
+
+  return errors;
 }
 
 export function validateProject(data: Record<string, unknown>): ValidationError[] {
@@ -96,6 +151,8 @@ export function validateProject(data: Record<string, unknown>): ValidationError[
     errors.push({ field: "technologies", message: "Technologies must be a list." });
   }
 
+  errors.push(...validateImageMetadata(data));
+
   return errors;
 }
 
@@ -132,6 +189,8 @@ export function validateCertificate(data: Record<string, unknown>): ValidationEr
   if (data.skills && !Array.isArray(data.skills)) {
     errors.push({ field: "skills", message: "Skills must be a list." });
   }
+
+  errors.push(...validateImageMetadata(data));
 
   return errors;
 }

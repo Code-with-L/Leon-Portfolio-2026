@@ -9,6 +9,17 @@ interface ProjectCardProps {
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="group flex h-full flex-col">
+      {project.image && (
+        <div className="mb-4 overflow-hidden rounded border border-border">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image.url}
+            alt={project.image.alt}
+            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          />
+        </div>
+      )}
+
       <div className="flex items-center gap-3 text-xs text-muted">
         <span className="font-medium uppercase tracking-wider">
           {project.category}

@@ -65,6 +65,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </p>
         </header>
 
+        {project.image && (
+          <div className="mb-12 overflow-hidden rounded border border-border">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={project.image.url}
+              alt={project.image.alt}
+              className="w-full object-cover"
+            />
+          </div>
+        )}
+
         <div className="mb-12 border-y border-border py-6">
           <ProjectMeta project={project} />
         </div>

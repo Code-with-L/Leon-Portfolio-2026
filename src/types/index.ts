@@ -20,6 +20,12 @@ export interface ProjectSection {
   content: string;
 }
 
+export interface MediaImage {
+  url: string;
+  publicId: string;
+  alt: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -31,7 +37,7 @@ export interface Project {
   status: "completed" | "in-progress" | "planned";
   githubUrl?: string;
   liveUrl?: string;
-  image?: string;
+  image?: MediaImage;
   year?: number;
   sections?: ProjectSection[];
 }
@@ -46,7 +52,7 @@ export interface Certificate {
   date?: string;
   skills: string[];
   credentialUrl?: string;
-  image?: string;
+  image?: MediaImage;
 }
 
 export type SkillCategory =

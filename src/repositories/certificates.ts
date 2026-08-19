@@ -21,7 +21,9 @@ function firestoreDocToCertificate(
     date: data.date as string | undefined,
     skills: (data.skills as string[]) || [],
     credentialUrl: data.credentialUrl as string | undefined,
-    image: data.image as string | undefined,
+    image: typeof data.image === "object" && data.image !== null
+      ? data.image as Certificate["image"]
+      : undefined,
   };
 }
 

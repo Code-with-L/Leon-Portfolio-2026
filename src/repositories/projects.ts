@@ -21,7 +21,9 @@ function firestoreDocToProject(data: Record<string, unknown>, id: string): Proje
     status: (data.status as Project["status"]) || "completed",
     githubUrl: data.githubUrl as string | undefined,
     liveUrl: data.liveUrl as string | undefined,
-    image: data.image as string | undefined,
+    image: typeof data.image === "object" && data.image !== null
+      ? data.image as Project["image"]
+      : undefined,
     year: data.year as number | undefined,
     sections: (data.sections as Project["sections"]) || undefined,
   };

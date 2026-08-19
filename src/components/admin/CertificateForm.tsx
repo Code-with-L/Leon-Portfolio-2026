@@ -1,6 +1,9 @@
 "use client";
 
 import type { ActionResult } from "@/actions/certificates";
+import type { MediaImage } from "@/types";
+import { ImageField } from "./ImageField";
+
 interface CertificateFormProps {
   state: ActionResult;
   formAction: (formData: FormData) => void;
@@ -13,6 +16,7 @@ interface CertificateFormProps {
     date: string | null;
     skills: string[];
     credentialUrl: string | null;
+    image?: MediaImage;
   };
 }
 
@@ -100,6 +104,15 @@ export function CertificateForm({
           className="field"
         />
       </Field>
+
+      <ImageField
+        name="image"
+        label="Certificate Image"
+        existingImage={certificate?.image}
+        folder="certificates"
+        entityId={certificate?.id || "new"}
+        error={errors.image}
+      />
 
       <button
         type="submit"

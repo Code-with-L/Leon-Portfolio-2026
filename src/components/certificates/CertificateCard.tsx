@@ -14,6 +14,17 @@ const typeLabels: Record<Certificate["type"], string> = {
 export function CertificateCard({ certificate }: CertificateCardProps) {
   return (
     <article className="flex flex-col gap-4 border border-border p-6">
+      {certificate.image && (
+        <div className="overflow-hidden rounded border border-border">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={certificate.image.url}
+            alt={certificate.image.alt}
+            className="h-32 w-full object-cover"
+          />
+        </div>
+      )}
+
       <div className="flex items-center gap-3 text-xs text-muted">
         <span className="font-medium uppercase tracking-wider">
           {typeLabels[certificate.type]}

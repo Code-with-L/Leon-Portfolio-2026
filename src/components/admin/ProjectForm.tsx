@@ -2,6 +2,7 @@
 
 import type { ActionResult } from "@/actions/projects";
 import type { Project } from "@/types";
+import { ImageField } from "./ImageField";
 
 interface ProjectFormProps {
   state: ActionResult;
@@ -149,6 +150,15 @@ export function ProjectForm({
         />
         Featured project
       </label>
+
+      <ImageField
+        name="image"
+        label="Project Image"
+        existingImage={project?.image}
+        folder="projects"
+        entityId={project?.slug || "new"}
+        error={errors.image}
+      />
 
       <button
         type="submit"

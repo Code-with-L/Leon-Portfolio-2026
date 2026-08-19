@@ -14,6 +14,11 @@ interface Certificate {
   date: string | null;
   skills: string[];
   credentialUrl: string | null;
+  image?: {
+    url: string;
+    publicId: string;
+    alt: string;
+  };
 }
 
 export default function EditCertificatePage() {

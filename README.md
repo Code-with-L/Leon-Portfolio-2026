@@ -1,6 +1,6 @@
 # Leon Muriithi — Developer Portfolio
 
-A full-stack developer portfolio built with Next.js, Firebase, and TypeScript.
+A full-stack developer portfolio built with Next.js, Firebase, Cloudinary, and TypeScript.
 
 ## Tech Stack
 
@@ -9,6 +9,7 @@ A full-stack developer portfolio built with Next.js, Firebase, and TypeScript.
 - **Styling:** Tailwind CSS v4
 - **Database:** Firestore (with local fallback)
 - **Auth:** Firebase Authentication + Admin SDK
+- **Media:** Cloudinary (image uploads, optimization, CDN)
 - **Runtime:** React 19
 
 ## Project Structure
@@ -17,20 +18,21 @@ A full-stack developer portfolio built with Next.js, Firebase, and TypeScript.
 src/
   app/
     admin/          # Admin dashboard + CRUD pages
-    api/admin/      # Admin API routes (read-only data endpoints)
+    api/admin/      # Admin API routes (data + upload endpoints)
     (public)/       # Public portfolio pages
-  actions/          # Server Actions (auth, CRUD operations)
+  actions/          # Server Actions (auth, CRUD, image operations)
   components/
-    admin/          # Admin form components and shell
+    admin/          # Admin form components, shell, image field
     layout/         # Header, Footer
     ui/             # Reusable UI primitives
   config/           # Site configuration
   data/             # Local fallback data (used when Firebase is not configured)
   lib/
     firebase/       # Firebase client + admin SDK initialization
+    cloudinary.ts   # Server-only Cloudinary SDK wrapper
     admin-auth.ts   # Server-side session verification
     auth-context.tsx # Client-side auth state
-    validation.ts   # Input validation
+    validation.ts   # Input validation (including image validation)
   repositories/     # Data access layer (Firestore-first, local fallback)
   types/            # TypeScript type definitions
 scripts/            # Setup and migration scripts
@@ -75,6 +77,14 @@ FIREBASE_ADMIN_PRIVATE_KEY=
 
 The `FIREBASE_ADMIN_PRIVATE_KEY` should be the full PEM key including `-----BEGIN PRIVATE KEY-----` and `-----END PRIVATE KEY-----` headers. In `.env.local`, newlines in the key should be represented as literal `\n` characters.
 
+#### Cloudinary (server-only, NEVER use `NEXT_PUBLIC_` prefix)
+
+```
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
 ### 3. Firebase project setup
 
 1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
@@ -84,7 +94,14 @@ The `FIREBASE_ADMIN_PRIVATE_KEY` should be the full PEM key including `-----BEGI
 5. Generate a **Service Account** key (Project Settings → Service Accounts → Generate New Private Key)
 6. Copy the service account values to the `FIREBASE_ADMIN_*` env vars
 
-### 4. Firestore security rules
+### 4. Cloudinary setup
+
+1. Create a Cloudinary account at [cloudinary.com](https://cloudinary.com)
+2. From the Dashboard, copy your **Cloud Name**, **API Key**, and **API Secret**
+3. Add them to `.env.local` as `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+4. Images are stored in the `portfolio/projects/` and `portfolio/certificates/` folders on Cloudinary
+
+### 5. Firestore security rules
 
 Deploy the rules in `firestore.rules`:
 
@@ -97,7 +114,7 @@ Rules grant:
 - **Admin-only write** (requires `admin: true` custom claim)
 - **Deny all** on unknown collections
 
-### 5. Create admin account
+### 6. Create admin account
 
 1. Create a user in Firebase Authentication (via console or the login page)
 2. Run the admin claim bootstrap script:
@@ -110,7 +127,7 @@ npm run set-admin -- --email user@example.com
 
 3. The user must **sign out and sign back in** for the custom claim to take effect
 
-### 6. Migrate local data to Firestore (optional)
+### 7. Migrate local data to Firestore (optional)
 
 If you have local data in `src/data/` and want to populate Firestore:
 
@@ -151,7 +168,7 @@ The build verifies TypeScript types and generates optimized static/dynamic pages
 
 Ensure:
 - Node.js 18+ runtime
-- All `NEXT_PUBLIC_*` and `FIREBASE_ADMIN_*` env vars are set
+- All `NEXT_PUBLIC_*`, `FIREBASE_ADMIN_*`, and `CLOUDINARY_*` env vars are set
 - `firestore.rules` are deployed to your Firebase project
 
 ## Security Model
@@ -182,14 +199,43 @@ Ensure:
 - String length limits prevent abuse
 - URL fields are validated for valid format and protocol
 - Enum fields are validated against allowed values
+- Image uploads validated for MIME type (JPEG, PNG, WebP, AVIF), file size (5 MB max), and format
+
+### Media (Cloudinary)
+
+- All Cloudinary operations are server-only (`CLOUDINARY_*` vars have no `NEXT_PUBLIC_` prefix)
+- Upload and delete routes require admin authentication
+- Image replacement follows upload-first strategy: new image uploaded before old is deleted
+- Public IDs are validated against allowed folder prefixes (`portfolio/projects/`, `portfolio/certificates/`)
+- Orphaned assets are logged server-side, not exposed to clients
 
 ## Firestore Collections
 
 | Collection | Document ID | Fields |
 |-----------|-------------|--------|
-| `projects` | slug | title, shortDescription, description, category, technologies[], featured, status, year, githubUrl, liveUrl |
-| `certificates` | auto-generated | title, issuer, type, date, skills[], credentialUrl |
+| `projects` | slug | title, shortDescription, description, category, technologies[], featured, status, year, githubUrl, liveUrl, image{url, publicId, alt} |
+| `certificates` | auto-generated | title, issuer, type, date, skills[], credentialUrl, image{url, publicId, alt} |
 | `skills` | `{category}-{name}` | name, category, description |
+
+## Image Management
+
+### Supported Formats
+
+- JPEG, PNG, WebP, AVIF
+- Maximum file size: 5 MB
+
+### Upload Workflow
+
+1. Admin selects image in the form (client-side preview shown)
+2. On form submit, image is uploaded to Cloudinary via authenticated API route
+3. Cloudinary returns optimized URL and public ID
+4. Image metadata (`url`, `publicId`, `alt`) is saved in the Firestore document
+5. Previous image (if any) is deleted from Cloudinary after successful upload
+
+### Deletion
+
+- When a project or certificate is deleted, its associated Cloudinary image is also deleted
+- Images can be removed from individual items via the admin form
 
 ## Admin Workflow
 
@@ -197,7 +243,8 @@ Ensure:
 2. Sign in with Firebase credentials
 3. Dashboard shows collection counts
 4. Create/edit/delete projects, certificates, and skills
-5. Changes are immediately reflected on the public site via `revalidatePath`
+5. Upload images for projects and certificates
+6. Changes are immediately reflected on the public site via `revalidatePath`
 
 ## Available Scripts
 
