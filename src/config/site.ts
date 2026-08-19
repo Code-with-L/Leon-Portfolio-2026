@@ -5,7 +5,7 @@ export const siteConfig = {
     "Software developer building useful software and learning through real projects.",
   url: "https://leonmuriithi.dev",
   links: {
-    github: "https://github.com/leonmuriithi",
+    github: "https://github.com/Code-with-L",
     email: "hello@leonmuriithi.dev",
   },
   nav: [

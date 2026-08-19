@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
-import { getProjects } from "@/data/projects";
+import { getProjects } from "@/repositories/projects";
 
 export const metadata: Metadata = {
   title: "Projects — Leon Muriithi",
@@ -10,8 +10,8 @@ export const metadata: Metadata = {
     "Software projects built by Leon Muriithi, including web platforms, AI tools, and systems.",
 };
 
-export default function ProjectsPage() {
-  const projects = getProjects();
+export default async function ProjectsPage() {
+  const projects = await getProjects();
 
   return (
     <Container as="main" className="py-20 sm:py-28">

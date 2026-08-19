@@ -5,14 +5,23 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { SkillGroup } from "@/components/skills/SkillGroup";
 import { CertificateGrid } from "@/components/certificates/CertificateGrid";
-import { getFeaturedProjects } from "@/data/projects";
-import { getSkillsByCategory, getSkillCategories } from "@/data/skills";
-import { getCertificates } from "@/data/certificates";
+import { getFeaturedProjects } from "@/repositories/projects";
+import { getSkillsByCategory, getSkillCategories } from "@/repositories/skills";
+import { getCertificates } from "@/repositories/certificates";
 
-export default function Home() {
-  const featuredProjects = getFeaturedProjects();
-  const certificates = getCertificates();
-  const categories = getSkillCategories();
+export default async function Home() {
+  const [featuredProjects, certificates, categories] = await Promise.all([
+    getFeaturedProjects(),
+    getCertificates(),
+    getSkillCategories(),
+  ]);
+
+  const skillsByCategory = await Promise.all(
+    categories.map(async (cat) => ({
+      category: cat,
+      skills: await getSkillsByCategory(cat),
+    })),
+  );
 
   return (
     <>
@@ -75,12 +84,8 @@ export default function Home() {
             description="Technologies and tools I use to build software."
           />
           <div className="max-w-3xl">
-            {categories.map((category) => (
-              <SkillGroup
-                key={category}
-                category={category}
-                skills={getSkillsByCategory(category)}
-              />
+            {skillsByCategory.map(({ category, skills }) => (
+              <SkillGroup key={category} category={category} skills={skills} />
             ))}
           </div>
         </Container>

@@ -3,21 +3,26 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { ProjectMeta } from "@/components/projects/ProjectMeta";
-import { getProjectBySlug, getProjectSlugs } from "@/data/projects";
+import {
+  getProjectBySlug,
+  getProjectSlugs,
+} from "@/repositories/projects";
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return getProjectSlugs().map((slug) => ({ slug }));
+  return getProjectSlugs().then((slugs) =>
+    slugs.map((slug) => ({ slug })),
+  );
 }
 
-export async function generateMetadata(
-  { params }: ProjectPageProps,
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     return { title: "Project Not Found" };
@@ -31,7 +36,7 @@ export async function generateMetadata(
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();
