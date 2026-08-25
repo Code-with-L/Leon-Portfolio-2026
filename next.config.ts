@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const ContentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",
   "img-src 'self' https://res.cloudinary.com data: blob:",

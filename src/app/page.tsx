@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { SkillGroup } from "@/components/skills/SkillGroup";
 import { CertificateGrid } from "@/components/certificates/CertificateGrid";
+import { HuracanExperience } from "@/components/three/HuracanExperience";
 import { getFeaturedProjects } from "@/repositories/projects";
 import { getSkillsByCategory, getSkillCategories } from "@/repositories/skills";
 import { getCertificates } from "@/repositories/certificates";
@@ -25,8 +26,14 @@ export default async function Home() {
 
   return (
     <>
+      {/* Fixed full-viewport 3D — renders behind all sections via z-index */}
+      <HuracanExperience />
+
       {/* Hero */}
-      <section className="py-24 sm:py-32 lg:py-40">
+      <section
+        id="hero"
+        className="relative min-h-screen flex items-center"
+      >
         <Container>
           <div className="flex max-w-2xl flex-col gap-6">
             <p className="text-sm font-medium tracking-wide text-muted uppercase">
@@ -36,8 +43,9 @@ export default async function Home() {
               Leon Muriithi
             </h1>
             <p className="max-w-lg text-base leading-relaxed text-muted sm:text-lg">
-              I build practical software, explore new technologies, and learn by
-              solving real problems. This portfolio is a collection of that work.
+              I build practical software, explore new technologies, and learn
+              by solving real problems. This portfolio is a collection of that
+              work.
             </p>
             <div className="flex gap-3 pt-3">
               <Link href="/projects">
@@ -52,7 +60,7 @@ export default async function Home() {
       </section>
 
       {/* Selected Projects */}
-      <section className="border-t border-border py-20 sm:py-24">
+      <section id="work" className="border-t border-border py-20 sm:py-24">
         <Container>
           <div className="flex items-end justify-between">
             <SectionHeading
@@ -77,7 +85,7 @@ export default async function Home() {
       </section>
 
       {/* Skills */}
-      <section className="border-t border-border py-20 sm:py-24">
+      <section id="skills" className="border-t border-border py-20 sm:py-24">
         <Container>
           <SectionHeading
             title="What I Work With"
@@ -92,7 +100,7 @@ export default async function Home() {
       </section>
 
       {/* Certificates */}
-      <section className="border-t border-border py-20 sm:py-24">
+      <section id="certs" className="border-t border-border py-20 sm:py-24">
         <Container>
           <SectionHeading
             title="Certificates & Learning"
@@ -103,7 +111,7 @@ export default async function Home() {
       </section>
 
       {/* About Preview */}
-      <section className="border-t border-border py-20 sm:py-24">
+      <section id="about" className="border-t border-border py-20 sm:py-24">
         <Container>
           <div className="flex max-w-2xl flex-col gap-6">
             <SectionHeading
@@ -127,7 +135,7 @@ export default async function Home() {
       </section>
 
       {/* Contact CTA */}
-      <section className="border-t border-border py-20 sm:py-24">
+      <section id="contact" className="border-t border-border py-20 sm:py-24">
         <Container>
           <div className="flex max-w-2xl flex-col gap-6">
             <SectionHeading

@@ -7,6 +7,11 @@
   --border: #e5e7eb;
   --accent: #111111;
   --accent-foreground: #fafafa;
+
+  /* Gold accent scale (decorative — used sparingly, e.g. Golden Nexus hero) */
+  --gold-deep: #9a7625;
+  --gold: #d4af37;
+  --gold-bright: #f1d76a;
 }
 
 @theme inline {
@@ -16,6 +21,9 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
