@@ -7,14 +7,9 @@ interface ProjectGridProps {
 
 export function ProjectGrid({ projects }: ProjectGridProps) {
   return (
-    <div className="grid gap-px sm:grid-cols-2">
+    <div className="grid gap-4 sm:grid-cols-2">
       {projects.map((project) => (
-        <div
-          key={project.slug}
-          className="border border-border p-6 sm:p-8"
-        >
-          <ProjectCard project={project} />
-        </div>
+        <ProjectCard key={project.slug} project={project} />
       ))}
     </div>
   );

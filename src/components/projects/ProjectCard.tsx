@@ -8,9 +8,9 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="group flex h-full flex-col">
+    <article className="group flex h-full flex-col rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md transition-colors duration-300 hover:border-foreground/20">
       {project.image && (
-        <div className="mb-4 overflow-hidden rounded border border-border">
+        <div className="mb-4 overflow-hidden rounded-xl border border-border/60">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={project.image.url}

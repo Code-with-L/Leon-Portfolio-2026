@@ -7,6 +7,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/Code-with-L",
     email: "hello@leonmuriithi.dev",
+    googleDeveloper: "https://developers.google.com/profile/u/106182564080939800693",
   },
   nav: [
     { label: "Home", href: "/" },

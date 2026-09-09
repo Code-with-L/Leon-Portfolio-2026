@@ -39,6 +39,19 @@
   }
 }
 
+/* Cinematic home-page region: re-scopes theme tokens to a dark palette so
+   light text stays legible over the scroll-scrubbed video, regardless of
+   the active scheme. Kept as hex values so /alpha utilities still work. */
+.cinematic {
+  --background: #0b0b0d;
+  --foreground: #e9e9ec;
+  --muted: #a6a6b0;
+  --border: rgba(233, 233, 236, 0.14);
+  --accent: #e9e9ec;
+  --accent-foreground: #0b0b0d;
+}
+
+
 *,
 *::before,
 *::after {
@@ -110,4 +123,16 @@ select.field {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   padding-right: 2rem;
+}
+
+/* Hotspot pulse animation */
+@keyframes hotspot-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }

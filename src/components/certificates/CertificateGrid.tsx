@@ -21,11 +21,9 @@ export function CertificateGrid({ certificates }: CertificateGridProps) {
   }
 
   return (
-    <div className="grid gap-px sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {certificates.map((certificate) => (
-        <div key={certificate.id} className="border border-border">
-          <CertificateCard certificate={certificate} />
-        </div>
+        <CertificateCard key={certificate.id} certificate={certificate} />
       ))}
     </div>
   );

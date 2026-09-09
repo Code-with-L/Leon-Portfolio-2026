@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { SkillGroup } from "@/components/skills/SkillGroup";
 import { CertificateGrid } from "@/components/certificates/CertificateGrid";
-import { HuracanExperience } from "@/components/three/HuracanExperience";
+import VideoHero from "@/components/three/VideoHero";
 import { getFeaturedProjects } from "@/repositories/projects";
 import { getSkillsByCategory, getSkillCategories } from "@/repositories/skills";
 import { getCertificates } from "@/repositories/certificates";
@@ -26,23 +26,20 @@ export default async function Home() {
 
   return (
     <>
-      {/* Fixed full-viewport 3D — renders behind all sections via z-index */}
-      <HuracanExperience />
+      {/* ── Fixed full-bleed scroll-scrubbed video background ──────── */}
+      <VideoHero />
 
-      {/* Hero */}
-      <section
-        id="hero"
-        className="relative min-h-screen flex items-center"
-      >
-        <Container>
-          <div className="flex max-w-2xl flex-col gap-6">
-            <p className="text-sm font-medium tracking-wide text-muted uppercase">
+      {/* ── Hero — text over the cinematic video background ────────── */}
+      <section id="hero" className="relative flex min-h-screen items-center">
+        <Container className="relative z-10">
+          <div className="flex max-w-2xl flex-col gap-6 rounded-2xl border border-white/10 bg-black/30 p-8 backdrop-blur-sm sm:p-10">
+            <p className="text-sm font-medium tracking-wide text-white/70 uppercase">
               Software Developer
             </p>
-            <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Leon Muriithi
             </h1>
-            <p className="max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+            <p className="max-w-lg text-base leading-relaxed text-white/80 sm:text-lg">
               I build practical software, explore new technologies, and learn
               by solving real problems. This portfolio is a collection of that
               work.
@@ -59,8 +56,15 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* Selected Projects */}
-      <section id="work" className="border-t border-border py-20 sm:py-24">
+      {/* ── Cinematic content region — re-scopes theme tokens to a dark
+           palette so light text stays readable while the scrubbed video
+           glows through the translucent section backgrounds. ──────── */}
+      <div className="cinematic relative">
+      {/* ── Selected Projects ──────────────────────────────────────── */}
+      <section
+        id="work"
+        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+      >
         <Container>
           <div className="flex items-end justify-between">
             <SectionHeading
@@ -84,14 +88,17 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* Skills */}
-      <section id="skills" className="border-t border-border py-20 sm:py-24">
+      {/* ── Skills ─────────────────────────────────────────────────── */}
+      <section
+        id="skills"
+        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+      >
         <Container>
           <SectionHeading
             title="What I Work With"
             description="Technologies and tools I use to build software."
           />
-          <div className="max-w-3xl">
+          <div className="max-w-3xl rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
             {skillsByCategory.map(({ category, skills }) => (
               <SkillGroup key={category} category={category} skills={skills} />
             ))}
@@ -99,8 +106,11 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* Certificates */}
-      <section id="certs" className="border-t border-border py-20 sm:py-24">
+      {/* ── Certificates ───────────────────────────────────────────── */}
+      <section
+        id="certs"
+        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+      >
         <Container>
           <SectionHeading
             title="Certificates & Learning"
@@ -110,14 +120,17 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* About Preview */}
-      <section id="about" className="border-t border-border py-20 sm:py-24">
+      {/* ── About Preview ──────────────────────────────────────────── */}
+      <section
+        id="about"
+        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+      >
         <Container>
-          <div className="flex max-w-2xl flex-col gap-6">
-            <SectionHeading
-              title="About"
-              description="A developer focused on building real software and learning through practical projects."
-            />
+          <SectionHeading
+            title="About"
+            description="A developer focused on building real software and learning through practical projects."
+          />
+          <div className="flex max-w-2xl flex-col gap-6 rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-base leading-relaxed text-muted">
               Every project is an opportunity to deepen my understanding of
               software development — from architecture and code quality to
@@ -134,20 +147,27 @@ export default async function Home() {
         </Container>
       </section>
 
-      {/* Contact CTA */}
-      <section id="contact" className="border-t border-border py-20 sm:py-24">
+      {/* ── Contact CTA ────────────────────────────────────────────── */}
+      <section
+        id="contact"
+        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+      >
         <Container>
-          <div className="flex max-w-2xl flex-col gap-6">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
             <SectionHeading
+              centered
               title="Get in Touch"
               description="Have a question, idea, or want to collaborate?"
             />
-            <Link href="/contact">
-              <Button>Contact Me</Button>
-            </Link>
+            <div className="rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
+              <Link href="/contact">
+                <Button>Contact Me</Button>
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
+      </div>
     </>
   );
 }

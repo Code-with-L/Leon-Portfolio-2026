@@ -6,7 +6,7 @@ const ContentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",
   "img-src 'self' https://res.cloudinary.com data: blob:",
-  "connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com",
+  "connect-src 'self' blob: https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

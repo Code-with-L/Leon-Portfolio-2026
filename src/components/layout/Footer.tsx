@@ -54,9 +54,23 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border py-4">
-          <p className="text-center text-xs text-muted">
-            &copy; {new Date().getFullYear()} {siteConfig.name}
-          </p>
+          <div className="flex flex-col items-center gap-1.5">
+            <p className="text-center text-xs text-muted">
+              &copy; {new Date().getFullYear()} {siteConfig.name}
+            </p>
+            <p className="text-center text-[10px] text-muted/60">
+              3D model by{" "}
+              <a
+                href="https://sketchfab.com/3d-models/huracan-eagletm-ea7b91e22b8848ac8d02c79b1c574fc1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-muted/30 transition-colors hover:text-muted"
+              >
+                SDC PERFORMANCE
+              </a>{" "}
+              on Sketchfab (CC Attribution-NonCommercial)
+            </p>
+          </div>
         </div>
       </Container>
     </footer>
