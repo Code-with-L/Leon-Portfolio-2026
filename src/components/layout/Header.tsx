@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b backdrop-blur-sm ${
+      className={`sticky top-0 z-40 border-b ${
         pathname === "/"
           ? "border-white/10 bg-black/60 text-white"
           : "border-border bg-background/80"

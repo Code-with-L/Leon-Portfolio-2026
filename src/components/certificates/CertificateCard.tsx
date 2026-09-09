@@ -18,7 +18,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
   const credentialLabel = isGoogleBadge ? "Verify on Google" : "View Credential";
 
   return (
-    <article className="flex h-full flex-col gap-4 rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md">
+    <article className="flex h-full flex-col gap-4 rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20">
       {certificate.image &&
         (isBadge ? (
           <div className="flex items-center justify-center rounded-xl border border-border/60 bg-foreground/[0.04] p-6">

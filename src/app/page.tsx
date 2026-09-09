@@ -32,7 +32,7 @@ export default async function Home() {
       {/* ── Hero — text over the cinematic video background ────────── */}
       <section id="hero" className="relative flex min-h-screen items-center">
         <Container className="relative z-10">
-          <div className="flex max-w-2xl flex-col gap-6 rounded-2xl border border-white/10 bg-black/30 p-8 backdrop-blur-sm sm:p-10">
+          <div className="flex max-w-2xl flex-col gap-6 rounded-2xl border border-white/10 bg-black/30 p-8 sm:p-10">
             <p className="text-sm font-medium tracking-wide text-white/70 uppercase">
               Software Developer
             </p>
@@ -63,7 +63,7 @@ export default async function Home() {
       {/* ── Selected Projects ──────────────────────────────────────── */}
       <section
         id="work"
-        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
       >
         <Container>
           <div className="flex items-end justify-between">
@@ -91,14 +91,14 @@ export default async function Home() {
       {/* ── Skills ─────────────────────────────────────────────────── */}
       <section
         id="skills"
-        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
       >
         <Container>
           <SectionHeading
             title="What I Work With"
             description="Technologies and tools I use to build software."
           />
-          <div className="max-w-3xl rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
+          <div className="max-w-3xl rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 sm:p-8">
             {skillsByCategory.map(({ category, skills }) => (
               <SkillGroup key={category} category={category} skills={skills} />
             ))}
@@ -109,7 +109,7 @@ export default async function Home() {
       {/* ── Certificates ───────────────────────────────────────────── */}
       <section
         id="certs"
-        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
       >
         <Container>
           <SectionHeading
@@ -123,14 +123,14 @@ export default async function Home() {
       {/* ── About Preview ──────────────────────────────────────────── */}
       <section
         id="about"
-        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
       >
         <Container>
           <SectionHeading
             title="About"
             description="A developer focused on building real software and learning through practical projects."
           />
-          <div className="flex max-w-2xl flex-col gap-6 rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
+          <div className="flex max-w-2xl flex-col gap-6 rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 sm:p-8">
             <p className="text-base leading-relaxed text-muted">
               Every project is an opportunity to deepen my understanding of
               software development — from architecture and code quality to
@@ -150,7 +150,7 @@ export default async function Home() {
       {/* ── Contact CTA ────────────────────────────────────────────── */}
       <section
         id="contact"
-        className="relative border-t border-border bg-black/50 py-20 backdrop-blur-sm sm:py-24"
+        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
       >
         <Container>
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
@@ -159,7 +159,7 @@ export default async function Home() {
               title="Get in Touch"
               description="Have a question, idea, or want to collaborate?"
             />
-            <div className="rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 backdrop-blur-md sm:p-8">
+            <div className="rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 sm:p-8">
               <Link href="/contact">
                 <Button>Contact Me</Button>
               </Link>

@@ -105,17 +105,6 @@ export default function VideoHero() {
         aria-hidden="true"
       />
 
-      {/* Persistent dark scrim over the whole page so all content layers
-          stay legible against the moving video backdrop. Layers a soft
-          vignette (darker at edges) over a uniform mid-dark veil. */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 25%, rgba(0,0,0,0.45) 75%, rgba(0,0,0,0.6) 100%), radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, rgba(0,0,0,0.35) 100%)",
-        }}
-      />
-
       {/* Placeholder when the video file isn't present yet */}
       {ready && !hasVideo && <VideoPlaceholder />}
     </>
