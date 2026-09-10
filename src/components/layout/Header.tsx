@@ -16,13 +16,7 @@ export function Header() {
   }
 
   return (
-    <header
-      className={`sticky top-0 z-40 border-b ${
-        pathname === "/"
-          ? "border-white/10 bg-black/60 text-white"
-          : "border-border bg-background/80"
-      }`}
-    >
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/60 text-white">
       <Container>
         <nav
           className="flex h-14 items-center justify-between"
@@ -41,16 +35,10 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`text-sm transition-colors duration-150 ${
-                    pathname === "/"
-                      ? "hover:text-white"
-                      : "hover:text-foreground"
-                  } ${
+                  className={`text-sm transition-colors duration-150 hover:text-white ${
                     isActive(item.href)
-                      ? `font-medium ${pathname === "/" ? "text-white" : "text-foreground"}`
-                      : pathname === "/"
-                        ? "text-white/70"
-                        : "text-muted"
+                      ? "font-medium text-white"
+                      : "text-white/70"
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
@@ -63,9 +51,7 @@ export function Header() {
           {/* Mobile toggle */}
           <button
             type="button"
-            className={`inline-flex items-center justify-center rounded p-2 transition-colors duration-150 hover:text-white md:hidden ${
-              pathname === "/" ? "text-white/70" : "text-muted"
-            }`}
+            className="inline-flex items-center justify-center rounded p-2 text-white/70 transition-colors duration-150 hover:text-white md:hidden"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -120,23 +106,17 @@ function MobileNav({
   return (
     <ul
       id="mobile-nav"
-      className={`flex flex-col gap-1 py-3 md:hidden ${
-        pathname === "/" ? "border-t border-white/10" : "border-t border-border"
-      }`}
+      className="flex flex-col gap-1 border-t border-white/10 py-3 md:hidden"
       role="list"
     >
       {siteConfig.nav.map((item) => (
         <li key={item.href}>
           <Link
             href={item.href}
-            className={`block rounded px-2 py-2 text-sm transition-colors duration-150 ${
-              pathname === "/" ? "hover:text-white" : "hover:text-foreground"
-            } ${
+            className={`block rounded px-2 py-2 text-sm transition-colors duration-150 hover:text-white ${
               isActive(item.href)
-                ? `font-medium ${pathname === "/" ? "text-white" : "text-foreground"}`
-                : pathname === "/"
-                  ? "text-white/70"
-                  : "text-muted"
+                ? "font-medium text-white"
+                : "text-white/70"
             }`}
             aria-current={isActive(item.href) ? "page" : undefined}
             onClick={onClose}
