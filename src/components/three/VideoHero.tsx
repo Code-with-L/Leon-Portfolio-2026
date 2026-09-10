@@ -101,6 +101,9 @@ export default function VideoHero() {
         muted
         playsInline
         preload="auto"
+        crossOrigin="anonymous"
+        disablePictureInPicture
+        controlsList="nodownload noplaybackrate noremoteplayback"
         src={VIDEO_SRC}
         poster={VIDEO_POSTER}
         aria-hidden="true"
