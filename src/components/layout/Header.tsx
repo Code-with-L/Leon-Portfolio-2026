@@ -30,12 +30,12 @@ export function Header() {
           </Link>
 
           {/* Desktop */}
-          <ul className="hidden items-center gap-6 md:flex">
+          <ul className="hidden items-center gap-2 md:flex">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`text-sm transition-colors duration-150 hover:text-white ${
+                  className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded px-3 py-2 text-sm transition-colors duration-150 hover:text-white ${
                     isActive(item.href)
                       ? "font-medium text-white"
                       : "text-white/70"
@@ -51,7 +51,7 @@ export function Header() {
           {/* Mobile toggle */}
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded p-2 text-white/70 transition-colors duration-150 hover:text-white md:hidden"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded p-2 text-white/70 transition-colors duration-150 hover:text-white md:hidden"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
@@ -113,7 +113,7 @@ function MobileNav({
         <li key={item.href}>
           <Link
             href={item.href}
-            className={`block rounded px-2 py-2 text-sm transition-colors duration-150 hover:text-white ${
+            className={`flex min-h-[44px] items-center rounded px-3 py-2 text-sm transition-colors duration-150 hover:text-white ${
               isActive(item.href)
                 ? "font-medium text-white"
                 : "text-white/70"

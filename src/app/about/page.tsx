@@ -50,9 +50,7 @@ export default function AboutPage() {
           description="A developer focused on building real software and learning through practical projects."
         />
 
-        {/* Two-column: content left, visual right — no dead space on desktop, collapses to single column on mobile */}
-        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:gap-16 items-start">
-          <div className="flex flex-col gap-8">
+        <div className="mx-auto flex max-w-3xl flex-col gap-8">
             {/* Who I Am — keep as introductory text, not in a panel to preserve hierarchy */}
             <section className="flex flex-col gap-4">
               <p className="text-base leading-relaxed text-muted">
@@ -151,34 +149,6 @@ export default function AboutPage() {
               </div>
             </section>
           </div>
-
-          {/* Right visual — fills dead space, ties to car/video identity, purple glow */}
-          <aside className="hidden lg:block lg:sticky lg:top-24">
-            <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-black">
-              {/* Soft purple glow behind the image */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-10 bg-[radial-gradient(ellipse_70%_60%_at_50%_30%,rgba(168,85,247,0.22),transparent_70%)] blur-2xl"
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/about-accent.jpg"
-                alt=""
-                aria-hidden="true"
-                className="relative h-[560px] w-full object-cover opacity-[0.48]"
-                loading="lazy"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
-              <div className="pointer-events-none absolute inset-0 bg-[#a855f7]/[0.06] mix-blend-overlay" />
-            </div>
-            <div className="mt-4 rounded-2xl border border-[#a855f7]/10 bg-[#a855f7]/[0.04] p-4">
-              <p className="text-xs font-mono tracking-wider text-[#c084fc]">Detail — Huracán</p>
-              <p className="mt-1 text-xs leading-relaxed text-white/50">
-                Wheel close-up from the hero film — muted, low-opacity, tied to the site’s violet identity.
-              </p>
-            </div>
-          </aside>
-        </div>
       </Container>
     </div>
   );

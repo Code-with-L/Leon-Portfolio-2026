@@ -44,12 +44,18 @@ export default async function Home() {
               by solving real problems. This portfolio is a collection of that
               work.
             </p>
-            <div className="flex gap-3 pt-3">
-              <Link href="/projects">
-                <Button>View Projects</Button>
+            <div className="flex flex-wrap gap-4 pt-3">
+              <Link
+                href="/projects"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/85"
+              >
+                View Projects
               </Link>
-              <Link href="/contact">
-                <Button variant="secondary">Get in Touch</Button>
+              <Link
+                href="/contact"
+                className="inline-flex min-h-[44px] items-center justify-center rounded-md border border-white/20 bg-transparent px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
+              >
+                Get in Touch
               </Link>
             </div>
           </div>

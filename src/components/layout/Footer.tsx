@@ -58,13 +58,13 @@ export function Footer() {
             <p className="text-center text-xs text-white/60">
               &copy; {new Date().getFullYear()} {siteConfig.name}
             </p>
-            <p className="text-center text-[10px] text-white/40">
+            <p className="text-center text-xs text-white/60">
               3D model by{" "}
               <a
                 href="https://sketchfab.com/3d-models/huracan-eagletm-ea7b91e22b8848ac8d02c79b1c574fc1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-white/20 transition-colors hover:text-white/60"
+                className="underline decoration-white/30 transition-colors hover:text-white"
               >
                 SDC PERFORMANCE
               </a>{" "}
