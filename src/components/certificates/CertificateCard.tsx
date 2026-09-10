@@ -75,7 +75,7 @@ export function CertificateCard({ certificate }: CertificateCardProps) {
             href={certificate.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm font-medium transition-colors duration-150 hover:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition-colors duration-150 hover:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2"
           >
             {credentialLabel}
             <span aria-hidden="true">&rarr;</span>

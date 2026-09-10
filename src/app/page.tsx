@@ -69,7 +69,7 @@ export default async function Home() {
       {/* ── Selected Projects ──────────────────────────────────────── */}
       <section
         id="work"
-        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
+        className="relative border-t border-border bg-black/80 py-20 sm:py-24"
       >
         <Container>
           <div className="flex items-end justify-between">
@@ -97,7 +97,7 @@ export default async function Home() {
       {/* ── Skills ─────────────────────────────────────────────────── */}
       <section
         id="skills"
-        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
+        className="relative border-t border-border bg-black/80 py-20 sm:py-24"
       >
         <Container>
           <SectionHeading
@@ -115,7 +115,7 @@ export default async function Home() {
       {/* ── Certificates ───────────────────────────────────────────── */}
       <section
         id="certs"
-        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
+        className="relative border-t border-border bg-black/80 py-20 sm:py-24"
       >
         <Container>
           <SectionHeading
@@ -129,7 +129,7 @@ export default async function Home() {
       {/* ── About Preview ──────────────────────────────────────────── */}
       <section
         id="about"
-        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
+        className="relative border-t border-border bg-black/80 py-20 sm:py-24"
       >
         <Container>
           <SectionHeading
@@ -156,7 +156,7 @@ export default async function Home() {
       {/* ── Contact CTA ────────────────────────────────────────────── */}
       <section
         id="contact"
-        className="relative border-t border-border bg-black/50 py-20 sm:py-24"
+        className="relative border-t border-border bg-black/80 py-20 sm:py-24"
       >
         <Container>
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
