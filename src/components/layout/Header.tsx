@@ -2,25 +2,41 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import { Container } from "@/components/ui/Container";
 
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   }
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/40 text-white backdrop-blur-xl supports-[backdrop-filter]:bg-black/30">
-      {/* Subtle violet bottom glow */}
+    <header
+      className={`sticky top-0 z-50 border-b text-white transition-all duration-300 ${
+        mobileOpen || scrolled
+          ? "border-white/10 bg-black/40 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30"
+          : "border-transparent bg-transparent backdrop-blur-none"
+      }`}
+    >
+      {/* Subtle violet bottom glow — only when glass is visible */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#a855f7]/20 to-transparent"
+        className={`pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#a855f7]/20 to-transparent transition-opacity duration-300 ${
+          mobileOpen || scrolled ? "opacity-100" : "opacity-0"
+        }`}
       />
       <Container>
         <nav className="flex h-[64px] items-center justify-between" aria-label="Main navigation">
