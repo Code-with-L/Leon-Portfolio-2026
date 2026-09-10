@@ -96,7 +96,8 @@ export default function VideoHero() {
       {/* Fixed full-viewport video (scrubbed, never autoplayed) */}
       <video
         ref={videoRef}
-        className="fixed inset-0 z-0 h-full w-full object-cover"
+        className="fixed inset-0 z-0 object-cover"
+        style={{ width: "100vw", height: "100vh" }}
         muted
         playsInline
         preload="auto"

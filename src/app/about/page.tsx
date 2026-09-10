@@ -35,10 +35,14 @@ const philosophy = [
 export default function AboutPage() {
   return (
     <div className="cinematic relative bg-[#0a0a0a]">
-      {/* Subtle static background — lightweight, no video, just typography + panels */}
+      {/* Subtle purple-tinted background — ties to homepage violet identity, not generic dark */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.05),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(168,85,247,0.08),transparent_60%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_85%_50%,rgba(168,85,247,0.06),transparent_65%)]"
       />
       <Container as="main" className="relative py-20 sm:py-28">
         <SectionHeading
@@ -46,101 +50,134 @@ export default function AboutPage() {
           description="A developer focused on building real software and learning through practical projects."
         />
 
-        <div className="flex max-w-3xl flex-col gap-8">
-          {/* Who I Am — keep as introductory text, not in a panel to preserve hierarchy */}
-          <section className="flex flex-col gap-4">
-            <p className="text-base leading-relaxed text-muted">
-              I&apos;m Leon Muriithi, a software developer with a passion for
-              building practical tools and solving real problems. I believe the
-              best way to learn is by building things that actually work.
-            </p>
-            <p className="text-base leading-relaxed text-muted">
-              Every project I take on is an opportunity to deepen my understanding
-              of software development — from architecture and code quality to
-              user experience and performance.
-            </p>
-          </section>
+        {/* Two-column: content left, visual right — no dead space on desktop, collapses to single column on mobile */}
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 xl:gap-16 items-start">
+          <div className="flex flex-col gap-8">
+            {/* Who I Am — keep as introductory text, not in a panel to preserve hierarchy */}
+            <section className="flex flex-col gap-4">
+              <p className="text-base leading-relaxed text-muted">
+                I&apos;m Leon Muriithi, a software developer with a passion for
+                building practical tools and solving real problems. I believe the
+                best way to learn is by building things that actually work.
+              </p>
+              <p className="text-base leading-relaxed text-muted">
+                Every project I take on is an opportunity to deepen my understanding
+                of software development — from architecture and code quality to
+                user experience and performance.
+              </p>
+            </section>
 
-          {/* Current Focus — same panel as homepage Skills/Certificates */}
-          <section className="rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">
-              Current Focus
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              I&apos;m currently exploring modern web development with React and
-              Next.js, mobile development with Flutter, and backend systems with
-              Firebase. I&apos;m also interested in machine learning and
-              blockchain-based systems.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {[
-                "React",
-                "Next.js",
-                "Flutter",
-                "Firebase",
-                "Machine Learning",
-                "TypeScript",
-              ].map((tech) => (
-                <Badge key={tech}>{tech}</Badge>
-              ))}
-            </div>
-          </section>
+            {/* Current Focus — same panel as homepage Skills/Certificates, now with accent heading + hover glow */}
+            <section className="group rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 transition-colors duration-300 hover:border-[#a855f7]/20 hover:shadow-[0_0_24px_rgba(168,85,247,0.08)] sm:p-8">
+              <h2 className="text-lg font-semibold tracking-tight text-foreground">
+                Current Focus
+              </h2>
+              <div className="mt-2 h-0.5 w-8 rounded-full bg-[#a855f7]/60" aria-hidden="true" />
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                I&apos;m currently exploring modern web development with React and
+                Next.js, mobile development with Flutter, and backend systems with
+                Firebase. I&apos;m also interested in machine learning and
+                blockchain-based systems.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {[
+                  "React",
+                  "Next.js",
+                  "Flutter",
+                  "Firebase",
+                  "Machine Learning",
+                  "TypeScript",
+                ].map((tech) => (
+                  <Badge key={tech}>{tech}</Badge>
+                ))}
+              </div>
+            </section>
 
-          {/* Development Philosophy — clean numbered list within same panel system */}
-          <section className="rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">
-              Development Philosophy
-            </h2>
-            <ul className="mt-6 flex flex-col gap-5" role="list">
-              {philosophy.map((item, index) => (
-                <li key={item.title} className="flex gap-4">
-                  <span
-                    aria-hidden="true"
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border bg-foreground/[0.04] text-[11px] font-mono font-medium tracking-wider text-muted"
-                  >
-                    {(index + 1).toString().padStart(2, "0")}
-                  </span>
-                  <span className="flex flex-col gap-1 pt-0.5">
-                    <span className="text-sm font-semibold text-foreground">
-                      {item.title}
+            {/* Development Philosophy — clean numbered list within same panel system, purple markers */}
+            <section className="group rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 transition-colors duration-300 hover:border-[#a855f7]/20 hover:shadow-[0_0_24px_rgba(168,85,247,0.08)] sm:p-8">
+              <h2 className="text-lg font-semibold tracking-tight text-foreground">
+                Development Philosophy
+              </h2>
+              <div className="mt-2 h-0.5 w-8 rounded-full bg-[#a855f7]/60" aria-hidden="true" />
+              <ul className="mt-6 flex flex-col gap-5" role="list">
+                {philosophy.map((item, index) => (
+                  <li key={item.title} className="flex gap-4">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#a855f7]/20 bg-[#a855f7]/10 text-[11px] font-mono font-medium tracking-wider text-[#c084fc]"
+                    >
+                      {(index + 1).toString().padStart(2, "0")}
                     </span>
-                    <span className="text-sm leading-relaxed text-muted">
-                      {item.description}
+                    <span className="flex flex-col gap-1 pt-0.5">
+                      <span className="text-sm font-semibold text-foreground">
+                        {item.title}
+                      </span>
+                      <span className="text-sm leading-relaxed text-muted">
+                        {item.description}
+                      </span>
                     </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-          {/* Technologies I Work With — same tag pill treatment, grouped cleanly */}
-          <section className="rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 sm:p-8">
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">
-              Technologies I Work With
-            </h2>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {[
-                "JavaScript",
-                "TypeScript",
-                "Dart",
-                "C++",
-                "Python",
-                "React",
-                "Next.js",
-                "Flutter",
-                "Tailwind CSS",
-                "Firebase",
-                "Firestore",
-                "Cloudinary",
-                "Git",
-                "GitHub",
-                "Vercel",
-                "Android Studio",
-              ].map((tech) => (
-                <Badge key={tech}>{tech}</Badge>
-              ))}
+            {/* Technologies I Work With — same tag pill treatment, grouped cleanly */}
+            <section className="group rounded-2xl border border-border/60 bg-background/60 p-6 shadow-lg shadow-black/20 transition-colors duration-300 hover:border-[#a855f7]/20 hover:shadow-[0_0_24px_rgba(168,85,247,0.08)] sm:p-8">
+              <h2 className="text-lg font-semibold tracking-tight text-foreground">
+                Technologies I Work With
+              </h2>
+              <div className="mt-2 h-0.5 w-8 rounded-full bg-[#a855f7]/60" aria-hidden="true" />
+              <div className="mt-5 flex flex-wrap gap-2">
+                {[
+                  "JavaScript",
+                  "TypeScript",
+                  "Dart",
+                  "C++",
+                  "Python",
+                  "React",
+                  "Next.js",
+                  "Flutter",
+                  "Tailwind CSS",
+                  "Firebase",
+                  "Firestore",
+                  "Cloudinary",
+                  "Git",
+                  "GitHub",
+                  "Vercel",
+                  "Android Studio",
+                ].map((tech) => (
+                  <Badge key={tech}>{tech}</Badge>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Right visual — fills dead space, ties to car/video identity, purple glow */}
+          <aside className="hidden lg:block lg:sticky lg:top-24">
+            <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-black">
+              {/* Soft purple glow behind the image */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-10 bg-[radial-gradient(ellipse_70%_60%_at_50%_30%,rgba(168,85,247,0.22),transparent_70%)] blur-2xl"
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/about-accent.jpg"
+                alt=""
+                aria-hidden="true"
+                className="relative h-[560px] w-full object-cover opacity-[0.48]"
+                loading="lazy"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-[#a855f7]/[0.06] mix-blend-overlay" />
             </div>
-          </section>
+            <div className="mt-4 rounded-2xl border border-[#a855f7]/10 bg-[#a855f7]/[0.04] p-4">
+              <p className="text-xs font-mono tracking-wider text-[#c084fc]">Detail — Huracán</p>
+              <p className="mt-1 text-xs leading-relaxed text-white/50">
+                Wheel close-up from the hero film — muted, low-opacity, tied to the site’s violet identity.
+              </p>
+            </div>
+          </aside>
         </div>
       </Container>
     </div>
