@@ -23,36 +23,45 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isGlass = scrolled || mobileOpen;
+
   return (
     <header
       className={`sticky top-0 z-50 border-b text-white transition-all duration-300 ${
-        mobileOpen || scrolled
-          ? "border-white/10 bg-black/40 backdrop-blur-xl supports-[backdrop-filter]:bg-black/30"
-          : "border-transparent bg-transparent backdrop-blur-none"
+        isGlass
+          ? "border-transparent bg-transparent backdrop-blur-none"
+          : "border-white/10 bg-black backdrop-blur-xl supports-[backdrop-filter]:bg-black/80"
       }`}
     >
-      {/* Subtle violet bottom glow — only when glass is visible */}
+      {/* Violet bottom glow — only when glass (scrolled) to keep top clean black */}
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#a855f7]/20 to-transparent transition-opacity duration-300 ${
-          mobileOpen || scrolled ? "opacity-100" : "opacity-0"
+          isGlass ? "opacity-100" : "opacity-0"
         }`}
       />
       <Container>
-        <nav className="flex h-[64px] items-center justify-between" aria-label="Main navigation">
-          <Link href="/" className="group flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#a855f7] to-[#7c3aed] text-sm font-bold text-white shadow-[0_0_12px_rgba(168,85,247,0.35)] transition-all duration-300 group-hover:shadow-[0_0_16px_rgba(168,85,247,0.5)] group-hover:scale-[1.02]">
-              L
+        <nav className="relative flex h-[64px] items-center justify-between" aria-label="Main navigation">
+          {/* Left spacer for balance on desktop */}
+          <div className="hidden w-[88px] md:block" aria-hidden="true" />
+
+          {/* Center — KAIGAI luxury mark */}
+          <Link
+            href="/"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group flex flex-col items-center"
+            aria-label="KAIGAI — Home"
+          >
+            <span
+              className="text-[22px] font-semibold tracking-[0.22em] text-white transition-all duration-300 group-hover:tracking-[0.24em] group-hover:text-white sm:text-[26px] sm:tracking-[0.26em]"
+              style={{ fontFamily: "var(--font-cinzel)", fontVariantLigatures: "common-ligatures", textShadow: "0 0 12px rgba(168,85,247,0.35)" }}
+            >
+              KAIGAI
             </span>
-            <span className="hidden text-sm font-semibold tracking-tight sm:block">
-              {siteConfig.name}
-            </span>
-            <span className="block text-sm font-semibold tracking-tight sm:hidden">
-              Leon
-            </span>
+            <span className="hidden h-px w-12 bg-gradient-to-r from-transparent via-[#a855f7]/50 to-transparent sm:block" aria-hidden="true" />
+            <span className="mt-0.5 hidden font-mono text-[9px] tracking-[0.32em] text-white/40 sm:block">LEON MURIITHI</span>
           </Link>
 
-          {/* Desktop — pill nav */}
+          {/* Desktop nav — right side */}
           <ul className="hidden items-center gap-1 md:flex">
             {siteConfig.nav.map((item) => {
               const active = isActive(item.href);
@@ -80,7 +89,7 @@ export function Header() {
             })}
           </ul>
 
-          {/* Mobile toggle — violet accent when open */}
+          {/* Mobile toggle */}
           <button
             type="button"
             className={`inline-flex h-11 w-11 items-center justify-center rounded-full border text-white/70 transition-all duration-200 hover:text-white md:hidden ${
@@ -113,7 +122,7 @@ export function Header() {
           </button>
         </nav>
 
-        {/* Mobile menu — glass, large type, violet accents */}
+        {/* Mobile menu */}
         {mobileOpen && <MobileNav pathname={pathname} onClose={() => setMobileOpen(false)} />}
       </Container>
     </header>
@@ -135,7 +144,7 @@ function MobileNav({
   return (
     <div
       id="mobile-nav"
-      className="border-t border-white/10 bg-black/60 py-6 backdrop-blur-xl md:hidden"
+      className="border-t border-white/10 bg-black/80 py-6 backdrop-blur-xl md:hidden"
       role="dialog"
       aria-label="Mobile navigation"
     >
@@ -174,7 +183,7 @@ function MobileNav({
         })}
       </ul>
       <div className="mt-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true" />
-      <p className="mt-4 text-center text-xs tracking-wider text-white/30">LEON MURIITHI — 2026</p>
+      <p className="mt-4 text-center font-mono text-xs tracking-[0.32em] text-white/30">KAIGAI — 2026</p>
     </div>
   );
 }

@@ -56,7 +56,7 @@ export default function AboutPage() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden select-none"
       >
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[96px] font-black leading-none tracking-[-0.04em] text-white/[0.025] sm:text-[140px] lg:text-[180px]">
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 whitespace-nowrap text-[96px] font-black leading-none tracking-[-0.04em] text-white/[0.025] sm:text-[140px] lg:text-[180px]">
           ABOUT
         </div>
       </div>
